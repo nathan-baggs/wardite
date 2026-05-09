@@ -8,10 +8,22 @@
 namespace
 {
 
-auto patch_jmp() -> void
+auto patch_1() -> void
 {
     static constexpr auto patch_addr = std::uintptr_t{0x004717de};
     static constexpr auto patch_byte = std::uint8_t{0xeb};
+
+    const auto auto_prot = wardite::AutoProtect{reinterpret_cast<void *>(patch_addr), 1, PAGE_EXECUTE_READWRITE};
+
+    std::memcpy(reinterpret_cast<void *>(patch_addr), &patch_byte, 1);
+
+    wardite::log("patched byte at {:X} to {:X}", patch_addr, patch_byte);
+}
+
+auto patch_2() -> void
+{
+    static constexpr auto patch_addr = std::uintptr_t{0x00470B85};
+    static constexpr auto patch_byte = std::uint8_t{0x83};
 
     const auto auto_prot = wardite::AutoProtect{reinterpret_cast<void *>(patch_addr), 1, PAGE_EXECUTE_READWRITE};
 
@@ -54,7 +66,8 @@ DirectInput8Create(HINSTANCE hinst, DWORD dwVersion, REFIID riidltf, LPVOID *ppv
         case DLL_PROCESS_ATTACH:
         {
             wardite::log("DLLMain called for dinput8.dll");
-            patch_jmp();
+            patch_1();
+            patch_2();
         }
         case DLL_THREAD_ATTACH:
         case DLL_THREAD_DETACH:
