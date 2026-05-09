@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22)
 
 project(
   wardite
-  VERSION "0.0.1"
+  VERSION "2026.5.9.0"
   DESCRIPTION "fix of Way Of the Samurai 3"
   LANGUAGES C CXX
 )
@@ -19,7 +19,7 @@ set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -m32")
 
 add_subdirectory(src)
 
-set(CPACK_PACKAGE_NAME "project")
+set(CPACK_PACKAGE_NAME "wardite")
 set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
 set(CPACK_GENERATOR "ZIP")
 set(CPACK_INCLUDE_TOPLEVEL_DIRECTORY OFF)
