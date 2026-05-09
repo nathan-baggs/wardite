@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22)
 
 project(
   wardite
-  VERSION "2026.5.9.0"
+  VERSION "2026.5.9.1"
   DESCRIPTION "fix of Way Of the Samurai 3"
   LANGUAGES C CXX
 )
